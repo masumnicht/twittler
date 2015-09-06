@@ -10,7 +10,7 @@
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
+        var $twittlerStream = $('.twittlerStream');
         
 
         var index = streams.home.length - 1;
@@ -18,7 +18,7 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message + ' timestamp: ' + tweet.created_at);
-          $tweet.appendTo($body);
+          $tweet.appendTo($twittlerStream);
           index -= 1;
         }
         
@@ -34,12 +34,12 @@
       <div class='col-md-12 well text-center'>
         Welcome to Twittler!
       </div>
-      <button type='button' class='btn-primary' onClick='scheduleNextTweet()'>
-        Show new tweets!
-      </button>
       <div class='userNames col-md-4'>
-        <ul class='userList'>
+        <ul class='userList list-unstyled'>
+        Currently Following:
         </ul>
+      </div>
+      <div class='twittlerStream col-md-8'>
       </div>
     </div>
   </body>
