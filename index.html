@@ -4,42 +4,50 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel='stylesheet' href='style.css'>
   </head>
   <body>
     
     <script>
 
       $(document).ready(function(){
-        var $twittlerStream = $('.twittlerStream');
-        
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' timestamp: ' + tweet.created_at);
-          $tweet.appendTo($twittlerStream);
-          index -= 1;
-        }
-        
         window.users.forEach(function(el){;
-          var $userName = $('<li></li>');
-          $userName.text('@' + el).appendTo($('.userList'));
+          var $userName = $('<li><a class=' + el + '>' + '@' + el + '</a></li>');
+          $userName.appendTo($('.userList'));
         });
-        
+        var index = streams.home.length - 1;
+        var $twittlerStream = $('.twittlerStream');
+        var totalTweetCounter = 0;
+        var retrieveTweets = function(){
+            var index = streams.home.length-1;
+            var newTweetNum = index-totalTweetCounter;
+            while(newTweetNum>=0){
+              var tweet = streams.home[index];
+              var $tweet = $('<div><p><a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + tweet.message + ' : ' + tweet.created_at +'</p></div>');
+              $tweet.appendTo($twittlerStream.first());
+              index--;
+              newTweetNum--;
+              totalTweetCounter++;
+            }
+        };
+        retrieveTweets();
+        var tweetChecker = (function(){
+          return setInterval(retrieveTweets,5000)
+        })()
       });
-
     </script> 
     <div class='container'>
       <div class='col-md-12 well text-center'>
         Welcome to Twittler!
       </div>
-      <div class='userNames col-md-4'>
+      <div class='userNames col-md-3'>
         <ul class='userList list-unstyled'>
-        Currently Following:
+          Currently Following:
         </ul>
       </div>
-      <div class='twittlerStream col-md-8'>
+      <div class='twittlerStream col-md-9'>
+        <div>
+        </div>
       </div>
     </div>
   </body>
