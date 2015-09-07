@@ -7,25 +7,21 @@
     <link rel='stylesheet' href='style.css'>
   </head>
   <body>
-    
     <script>
-
-      $(document).ready(function(){
+      $(document).ready(function(){ 
         window.users.forEach(function(el){;
           var $userName = $('<li><a class=' + el + '>' + '@' + el + '</a></li>');
           $userName.appendTo($('.userList'));
         });
-        var index = streams.home.length - 1;
         var $twittlerStream = $('.twittlerStream');
         var totalTweetCounter = 0;
         var retrieveTweets = function(){
             var index = streams.home.length-1;
             var newTweetNum = index-totalTweetCounter;
             while(newTweetNum>=0){
-              var tweet = streams.home[index];
-              var $tweet = $('<div><p><a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + tweet.message + ' : ' + tweet.created_at +'</p></div>');
-              $tweet.appendTo($twittlerStream.first());
-              index--;
+              var tweet = streams.home[totalTweetCounter];
+              var $tweet = $('<div><a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + tweet.message + ' : ' + tweet.created_at +'</div>');
+              $tweet.prependTo($twittlerStream);
               newTweetNum--;
               totalTweetCounter++;
             }
@@ -46,8 +42,6 @@
         </ul>
       </div>
       <div class='twittlerStream col-md-9'>
-        <div>
-        </div>
       </div>
     </div>
   </body>
