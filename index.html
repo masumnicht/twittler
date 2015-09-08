@@ -27,6 +27,9 @@
             }
         };
         retrieveTweets();
+        $('.userList li').on('click', function(){
+          $('li').not(this).hide();
+        })
         var tweetChecker = (function(){
           return setInterval(retrieveTweets,5000)
         })()
