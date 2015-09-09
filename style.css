@@ -4,3 +4,9 @@
 body {
 	background-color: #E0F0FF;
 }
+a {
+	cursor: pointer;
+}
+button {
+	border-radius: 16px;
+}

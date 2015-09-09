@@ -10,7 +10,7 @@
     <script>
       $(document).ready(function(){ 
         window.users.forEach(function(el){;
-          var $userName = $('<li><a class=' + el + '>' + '@' + el + '</a></li>');
+          var $userName = $('<li><a class=' + el + ' title="Show Tweets For ' + el + '">' + '@' + el + '</a></li>');
           $userName.appendTo($('.userList'));
         });
         var $twittlerStream = $('.twittlerStream');
@@ -21,15 +21,22 @@
             while(newTweetNum>=0){
               var tweet = streams.home[totalTweetCounter];
               var $tweet = $('<div><a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + tweet.message + ' : ' + tweet.created_at +'</div>');
-              $tweet.prependTo($twittlerStream);
+              $tweet.prependTo($twittlerStream).hide().fadeIn(2000);
               newTweetNum--;
               totalTweetCounter++;
             }
         };
         retrieveTweets();
-        $('.userList li').on('click', function(){
+        $('.userList li').on('click', function(user){
           $('li').not(this).hide();
+          $('.allTweets').remove();
+          $('.userList').append($('<button class="allTweets">Show All Tweets</buttons>'));
+          $('.allTweets').on('click', function() {
+            $('.allTweets').remove();
+            $('li').not(this).show();
+          })
         })
+
         var tweetChecker = (function(){
           return setInterval(retrieveTweets,5000)
         })()
