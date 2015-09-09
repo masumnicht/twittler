@@ -20,10 +20,10 @@
             var newTweetNum = index-totalTweetCounter;
             while(newTweetNum>=0){
               var tweet = streams.home[totalTweetCounter];
-              var $tweet = $('<div class="container ' + tweet.user + '">' +
-                                '<a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + 
-                                '<div class="message">' + tweet.message + '</div> : ' + 
-                                '<div class="timeStamp">' + tweet.created_at + '</div>' +
+              var $tweet = $('<div class="row ' + tweet.user + '">' +
+                                '<a class="col-md-2"' + tweet.user + '>@' + tweet.user + '</a>' + 
+                                '<div class="message col-md-6">' + tweet.message + '</div>' + 
+                                '<div class="timeStamp col-md-4">' + tweet.created_at + '</div>' +
                               '</div>');
               $tweet.prependTo($twittlerStream).hide().fadeIn(2000);
               newTweetNum--;
@@ -42,7 +42,7 @@
         })
 
         var tweetChecker = (function(){
-          return setInterval(retrieveTweets,20000)
+          return setInterval(retrieveTweets,5000);
         })()
       });
     </script> 
@@ -50,7 +50,7 @@
       <div class='col-md-12 well text-center'>
         Welcome to Twittler!
       </div>
-      <div class='userNames col-md-3'>
+      <div class='userNames col-md-2'>
         <ul class='userList list-unstyled'>
           Currently Following:
         </ul>
