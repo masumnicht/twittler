@@ -1,4 +1,4 @@
-.twittlerStream div:nth-child(2n) {
+.twittlerStream>div:nth-child(2n) {
 	background-color: grey;
 }
 body {

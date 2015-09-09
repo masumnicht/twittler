@@ -20,17 +20,21 @@
             var newTweetNum = index-totalTweetCounter;
             while(newTweetNum>=0){
               var tweet = streams.home[totalTweetCounter];
-              var $tweet = $('<div><a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + tweet.message + ' : ' + tweet.created_at +'</div>');
+              var $tweet = $('<div class="container ' + tweet.user + '">' +
+                                '<a class=' + tweet.user + '>@' + tweet.user + '</a>: ' + 
+                                '<div class="message">' + tweet.message + '</div> : ' + 
+                                '<div class="timeStamp">' + tweet.created_at + '</div>' +
+                              '</div>');
               $tweet.prependTo($twittlerStream).hide().fadeIn(2000);
               newTweetNum--;
               totalTweetCounter++;
             }
         };
         retrieveTweets();
-        $('.userList li').on('click', function(user){
+        $('.userList li').on('click', function(){
           $('li').not(this).hide();
           $('.allTweets').remove();
-          $('.userList').append($('<button class="allTweets">Show All Tweets</buttons>'));
+          $('.userList').append($('<button class="allTweets btn-primary">Show All Tweets</buttons>'));
           $('.allTweets').on('click', function() {
             $('.allTweets').remove();
             $('li').not(this).show();
@@ -38,7 +42,7 @@
         })
 
         var tweetChecker = (function(){
-          return setInterval(retrieveTweets,5000)
+          return setInterval(retrieveTweets,20000)
         })()
       });
     </script> 
