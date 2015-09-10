@@ -10,3 +10,6 @@ a {
 button {
 	border-radius: 16px;
 }
+.showNewTweets {
+	text-align: center;
+}

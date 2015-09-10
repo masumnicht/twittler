@@ -9,8 +9,8 @@
   <body>
     <script>
       $(document).ready(function(){ 
-        window.users.forEach(function(el){;
-          var $userName = $('<li><a class=' + el + ' title="Show Tweets For ' + el + '">' + '@' + el + '</a></li>');
+        window.users.forEach(function(name){
+          var $userName = $('<li><a class=' + name + ' title="Show Tweets For ' + name + '">' + '@' + name + '</a></li>');
           $userName.appendTo($('.userList'));
         });
         var totalTweetCounter = streams.home.length;
@@ -36,7 +36,7 @@
                               '</div>');
               $tweet.appendTo('.twittlerStream').hide().fadeIn(2000);
               index--;
-              totalTweetCounter = streams.home.length
+              totalTweetCounter = streams.home.length;
             }
         };
         retrieveTweets();
@@ -51,8 +51,8 @@
             $('.showAllTweets').remove();
             $('a').not(this).show();
             retrieveTweets();
-          })
-        })
+          });
+        });
 
         var tweetChecker = (function(){
           return setInterval(function() {
@@ -60,12 +60,17 @@
             var count = newTweetCount - totalTweetCounter;
             $('.showNewTweets').remove();
             if(newTweetCount>totalTweetCounter) {
-              $('.twittlerStream').prepend('<button class="showNewTweets">Show ' + count + ' New Tweets</button>')
+              $('.twittlerStream').prepend('<div class="showNewTweets">' +
+                                              '<button class="showNewTweets">Show ' + count + ' New Tweets' +
+                                              '</button>' +
+                                            '</div>')
             }
             $('.showNewTweets').on('click', function() {
               retrieveTweets();
+              $('a').show();
+              $('.showAllTweets').remove();
               $('.showNewTweets').remove();
-            })
+            });
           },5000);
         })()
       });
