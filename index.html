@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel='stylesheet' href='style.css'>
   </head>
@@ -32,7 +33,7 @@
               var $tweet = $('<div class="row ' + tweet.user + '">' +
                                 '<a class="col-md-2 ' + tweet.user + '">@' + tweet.user + '</a>' + 
                                 '<div class="message col-md-6">' + tweet.message + '</div>' + 
-                                '<div class="timeStamp col-md-4">' + tweet.created_at + '</div>' +
+                                '<div class="timeStamp col-md-4">' + jQuery.timeago(tweet.created_at) + '</div>' +
                               '</div>');
               $tweet.appendTo('.twittlerStream').hide().fadeIn(2000);
               index--;
@@ -63,7 +64,7 @@
               $('.twittlerStream').prepend('<div class="showNewTweets">' +
                                               '<button class="showNewTweets">Show ' + count + ' New Tweets' +
                                               '</button>' +
-                                            '</div>')
+                                            '</div>');
             }
             $('.showNewTweets').on('click', function() {
               retrieveTweets();
