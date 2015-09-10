@@ -13,7 +13,7 @@
           var $userName = $('<li><a class=' + el + ' title="Show Tweets For ' + el + '">' + '@' + el + '</a></li>');
           $userName.appendTo($('.userList'));
         });
-        var totalTweetCounter = 0;
+        var totalTweetCounter = streams.home.length;
         var retrieveTweets = function(user){
             var index;
             var tweet;
@@ -36,6 +36,7 @@
                               '</div>');
               $tweet.appendTo('.twittlerStream').hide().fadeIn(2000);
               index--;
+              totalTweetCounter = streams.home.length
             }
         };
         retrieveTweets();
@@ -53,9 +54,20 @@
           })
         })
 
-        // var tweetChecker = (function(){
-        //   return setInterval(retrieveTweets,5000);
-        // })()
+        var tweetChecker = (function(){
+          return setInterval(function() {
+            var newTweetCount = streams.home.length;
+            var count = newTweetCount - totalTweetCounter;
+            $('.showNewTweets').remove();
+            if(newTweetCount>totalTweetCounter) {
+              $('.twittlerStream').prepend('<button class="showNewTweets">Show ' + count + ' New Tweets</button>')
+            }
+            $('.showNewTweets').on('click', function() {
+              retrieveTweets();
+              $('.showNewTweets').remove();
+            })
+          },5000);
+        })()
       });
     </script> 
     <div class='container'>
