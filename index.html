@@ -39,19 +39,23 @@
             }
         };
         retrieveTweets();
-        $('.userList li').on('click', function(){
-          $('li').not(this).hide();
-          $('.allTweets').remove();
-          $('.userList').append($('<button class="allTweets btn-primary">Show All Tweets</buttons>'));
-          $('.allTweets').on('click', function() {
-            $('.allTweets').remove();
-            $('li').not(this).show();
+        $('.userList li').on('click', 'a', function(event){
+          event.preventDefault();
+          var user = this.getAttribute('class');
+          $('a').not(this).hide();
+          retrieveTweets(user);
+          $('.showAllTweets').remove();
+          $('.userList').append($('<button class="showAllTweets btn-primary">Show All Tweets</buttons>'));
+          $('.showAllTweets').on('click', function() {
+            $('.showAllTweets').remove();
+            $('a').not(this).show();
+            retrieveTweets();
           })
         })
 
-        var tweetChecker = (function(){
-          return setInterval(retrieveTweets,5000);
-        })()
+        // var tweetChecker = (function(){
+        //   return setInterval(retrieveTweets,5000);
+        // })()
       });
     </script> 
     <div class='container'>
