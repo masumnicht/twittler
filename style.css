@@ -1,15 +1,27 @@
-.twittlerStream>div:nth-child(2n) {
-	background-color: grey;
+.twittlerStream>div:not(.showNewTweets):nth-child(2n+1) {
+	background-color: #F5FFFF;
+}
+.twittlerStream>div:not(.showNewTweets):nth-child(2n) {
+	background-color: #E0F0FF;
 }
 body {
-	background-color: #E0F0FF;
+	background-color: #B8E6E6;
 }
 a {
 	cursor: pointer;
 }
 button {
 	border-radius: 16px;
+	margin-bottom: 20px;
 }
 .showNewTweets {
 	text-align: center;
+}
+.twittlerStream>div:not(.showNewTweets) {
+	padding:10px;
+	border-top: 2px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-radius: 15px;
+	margin-bottom: 2px;
 }

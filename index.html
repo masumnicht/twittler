@@ -15,6 +15,7 @@
           $userName.appendTo($('.userList'));
         });
         var totalTweetCounter = streams.home.length;
+        var user;
         var retrieveTweets = function(user){
             var index;
             var tweet;
@@ -43,7 +44,7 @@
         retrieveTweets();
         $('.userList li').on('click', 'a', function(event){
           event.preventDefault();
-          var user = this.getAttribute('class');
+          user = this.getAttribute('class');
           $('a').not(this).hide();
           retrieveTweets(user);
           $('.showAllTweets').remove();
@@ -55,34 +56,33 @@
           });
         });
 
-        var tweetChecker = (function(){
+        var tweetChecker = function(){
           return setInterval(function() {
             var newTweetCount = streams.home.length;
             var count = newTweetCount - totalTweetCounter;
             $('.showNewTweets').remove();
             if(newTweetCount>totalTweetCounter) {
               $('.twittlerStream').prepend('<div class="showNewTweets">' +
-                                              '<button class="showNewTweets">Show ' + count + ' New Tweets' +
+                                              '<button class="showNewTweets">Show New Tweets' +
                                               '</button>' +
                                             '</div>');
             }
             $('.showNewTweets').on('click', function() {
-              retrieveTweets();
-              $('a').show();
-              $('.showAllTweets').remove();
+              retrieveTweets(user);
               $('.showNewTweets').remove();
             });
           },5000);
-        })()
+        };
+        tweetChecker();
       });
     </script> 
     <div class='container'>
       <div class='col-md-12 well text-center'>
-        Welcome to Twittler!
+        <h1>Welcome to Twittler!</h1>
       </div>
       <div class='userNames col-md-2'>
         <ul class='userList list-unstyled'>
-          Currently Following:
+          <h3>Currently Following:</h3>
         </ul>
       </div>
       <div class='twittlerStream col-md-9'>
