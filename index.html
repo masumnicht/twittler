@@ -48,10 +48,11 @@
           $('a').not(this).hide();
           retrieveTweets(user);
           $('.showAllTweets').remove();
-          $('.userList').append($('<button class="showAllTweets btn-primary">Show All Tweets</buttons>'));
+          $('.userList').append($('<button class="showAllTweets">Show All Tweets</buttons>'));
           $('.showAllTweets').on('click', function() {
             $('.showAllTweets').remove();
             $('a').not(this).show();
+            user = undefined;
             retrieveTweets();
           });
         });
@@ -61,7 +62,7 @@
             var newTweetCount = streams.home.length;
             $('.showNewTweets').remove();
             if(newTweetCount>totalTweetCounter) {
-              $('.twittlerStream').prepend('<div class="showNewTweets">' +
+              $('.newTweetsAvail').prepend('<div class="showNewTweets text-center">' +
                                               '<button class="showNewTweets">Show New Tweets' +
                                               '</button>' +
                                             '</div>');
@@ -79,6 +80,7 @@
       <div class='col-md-12 text-center well jumbotron'>
         <h1>Twittler</h1>
       </div>
+      <div class='newTweetsAvail col-md-12'></div>
       <div class='userNames col-md-2'>
         <ul class='userList list-unstyled'>
           <h3>Currently Following:</h3>

@@ -14,10 +14,8 @@ a {
 }
 button {
 	border-radius: 16px;
-	margin-bottom: 20px;
-	height: 40px;
-}
-.showNewTweets {
+	margin: 20px 0 20px 0;
+	background-color: #E0F0FF;
 	text-align: center;
 }
 .twittlerStream>div:not(.showNewTweets) {
@@ -32,4 +30,13 @@ button {
 	border-radius: 40px;
 	background-color:#F5FFFF;
 	opacity: .5;
+	padding: 0 20px 0 20px;
 }
+.userNames {
+	background-color: rgba(224, 255, 255, 0.5);
+	border-radius: 16px;
+}
+h1 {
+	font-family: impact;
+}
+
