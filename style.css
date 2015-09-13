@@ -14,9 +14,12 @@ a {
 }
 button {
 	border-radius: 16px;
-	margin: 20px 0 20px 0;
+	margin: 0px 0 20px 0;
 	background-color: #E0F0FF;
 	text-align: center;
+}
+.showAllTweets {
+	margin: 10px 0 0 0;
 }
 .twittlerStream>div:not(.showNewTweets) {
 	padding:10px;
