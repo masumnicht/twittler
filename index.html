@@ -59,7 +59,6 @@
         var tweetChecker = function(){
           return setInterval(function() {
             var newTweetCount = streams.home.length;
-            var count = newTweetCount - totalTweetCounter;
             $('.showNewTweets').remove();
             if(newTweetCount>totalTweetCounter) {
               $('.twittlerStream').prepend('<div class="showNewTweets">' +
@@ -67,7 +66,7 @@
                                               '</button>' +
                                             '</div>');
             }
-            $('.showNewTweets').on('click', function() {
+            $('.showNewTweets').on('click', 'button', function() {
               retrieveTweets(user);
               $('.showNewTweets').remove();
             });
@@ -77,8 +76,8 @@
       });
     </script> 
     <div class='container'>
-      <div class='col-md-12 well text-center'>
-        <h1>Welcome to Twittler!</h1>
+      <div class='col-md-12 text-center well jumbotron'>
+        <h1>Twittler</h1>
       </div>
       <div class='userNames col-md-2'>
         <ul class='userList list-unstyled'>
